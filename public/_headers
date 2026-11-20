@@ -1,0 +1,10 @@
+# Cloudflare Pages response headers for every page.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Keep the default *.pages.dev preview addresses out of search engines.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex

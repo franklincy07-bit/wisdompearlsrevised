@@ -18,6 +18,7 @@ next-env.d.ts
 
 # Deployment / tooling
 .vercel/
+.wrangler/
 coverage/
 
 # OS / editor
