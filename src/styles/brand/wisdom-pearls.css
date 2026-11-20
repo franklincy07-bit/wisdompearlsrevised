@@ -1,0 +1,20 @@
+/* Wisdom Pearls – placeholder palette, to be replaced when the visual identity is designed. */
+:root {
+  --color-bg: #fbf8f3;
+  --color-surface: #ffffff;
+  --color-fg: #1f2933;
+  --color-muted: #5f6b7a;
+  --color-accent: #8a6d3b;
+  --font-body: var(--font-serif);
+  --font-heading: var(--font-serif);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #14171c;
+    --color-surface: #1c2027;
+    --color-fg: #ece7de;
+    --color-muted: #a3acb8;
+    --color-accent: #d9b779;
+  }
+}

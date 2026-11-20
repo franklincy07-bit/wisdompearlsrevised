@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.next/
+out/
+.astro/
+_site/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environment files (secrets) – only .env.example files are committed
+.env
+.env.*
+!.env.example
+
+# Deployment / tooling
+.vercel/
+coverage/
+
+# OS / editor
+.DS_Store
+*.pem
+npm-debug.log*
+pnpm-debug.log*

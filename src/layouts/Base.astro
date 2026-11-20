@@ -1,0 +1,59 @@
+---
+import "@fde/brand/base.css";
+import "@fde/brand/wisdom-pearls.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = "Wisdom Pearls" } = Astro.props;
+const pageTitle = title ? `${title} · Wisdom Pearls` : "Wisdom Pearls";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={`${import.meta.env.BASE_URL.replace(/\/$/, "")}/favicon.svg`}
+    />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
+
+<style is:global>
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    line-height: 1.6;
+  }
+  main {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: var(--space-6) var(--space-3);
+  }
+  h1,
+  h2 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+  }
+  a {
+    color: var(--color-accent);
+  }
+  .muted {
+    color: var(--color-muted);
+  }
+</style>
