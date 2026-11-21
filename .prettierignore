@@ -1,9 +1,5 @@
 node_modules
 dist
-.next
 .astro
-.turbo
-_site
 pnpm-lock.yaml
-next-env.d.ts
 content

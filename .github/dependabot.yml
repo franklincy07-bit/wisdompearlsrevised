@@ -1,0 +1,19 @@
+# Dependabot opens pull requests to keep dependencies up to date.
+# Updates are grouped so each ecosystem arrives as ONE pull request per month.
+# Nothing is merged automatically: every update waits for the owner's review.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      all-dependencies:
+        patterns: ["*"]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      all-github-actions:
+        patterns: ["*"]

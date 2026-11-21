@@ -1,6 +1,0 @@
-# Cloudflare Pages configuration for the wisdom-pearls site.
-# Deployed by .github/workflows/deploy-wisdom-pearls.yml (Direct Upload via Wrangler).
-# The Cloudflare project is created automatically on the first deploy.
-name = "wisdom-pearls"
-pages_build_output_dir = "./dist"
-compatibility_date = "2026-11-01"
