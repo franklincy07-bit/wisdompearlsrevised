@@ -1,0 +1,68 @@
+# Publishes Wisdom Pearls to GitHub Pages.
+#
+# PUBLISHING LOCK: every job below runs only when the repository variable
+# WISDOM_PEARLS_PUBLISH is set to "true" (Settings → Secrets and variables →
+# Actions → Variables). The variable does not exist yet, so nothing is ever
+# published. Only the owner creates it, when Wisdom Pearls is ready.
+#
+# When unlocked, it runs when main changes or by hand from the Actions tab:
+# CI checks first, then a build for the address GitHub Pages reports, then the
+# deployment. It uses no secrets. GitHub Pages must also be switched on in the
+# repository settings (Source: GitHub Actions).
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Only one deployment at a time; a newer one waits rather than cancelling.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    if: vars.WISDOM_PEARLS_PUBLISH == 'true'
+    uses: ./.github/workflows/ci.yml
+
+  build:
+    needs: ci
+    if: vars.WISDOM_PEARLS_PUBLISH == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - id: pages
+        uses: actions/configure-pages@v6
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+        env:
+          SITE_URL: ${{ steps.pages.outputs.origin }}
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    if: vars.WISDOM_PEARLS_PUBLISH == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

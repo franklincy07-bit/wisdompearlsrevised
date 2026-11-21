@@ -3,22 +3,14 @@ node_modules/
 
 # Build output
 dist/
-.next/
-out/
 .astro/
-_site/
-.turbo/
 *.tsbuildinfo
-next-env.d.ts
 
-# Environment files (secrets) – only .env.example files are committed
+# Environment files (secrets) – never committed
 .env
 .env.*
-!.env.example
 
-# Deployment / tooling
-.vercel/
-.wrangler/
+# Tooling
 coverage/
 
 # OS / editor

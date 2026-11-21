@@ -2,9 +2,9 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
-// Content lives in /content/wisdom-pearls at the repository root so it can be
-// edited without touching application code. See content/README.md.
-const CONTENT = "../../content/wisdom-pearls";
+// Content lives in /content at the repository root so it can be edited
+// without touching application code. See content/README.md.
+const CONTENT = "./content";
 
 const pearls = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: `${CONTENT}/pearls` }),
